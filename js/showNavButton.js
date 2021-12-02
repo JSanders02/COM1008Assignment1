@@ -1,5 +1,5 @@
 function changeNavVisibleMobile() {
-    nav.classList.toggle('navShown'); // Expands nav menu
+    nav.classList.toggle('nav-shown'); // Expands nav menu
 
     // Changes button text
     if (showButtonMobile.innerHTML === "Menu") {
@@ -10,7 +10,7 @@ function changeNavVisibleMobile() {
 }
 
 function changeNavVisibleDesktop() {
-    nav.classList.toggle('navShown'); // Expands nav menu
+    nav.classList.toggle('nav-shown'); // Expands nav menu
     showButtonDesktop.style.opacity = '0';
     if (showButtonDesktop.innerHTML === '<img src="img/menuClosed.png"><p>Menu</p>') {
         setTimeout(function (){
@@ -25,8 +25,8 @@ function changeNavVisibleDesktop() {
     }
 }
 
-let showButtonMobile = document.getElementById('showNavMobile');
-let showButtonDesktop = document.getElementById('showNavDesktop');
+let showButtonMobile = document.getElementById('show-nav-mobile');
+let showButtonDesktop = document.getElementById('show-nav-desktop');
 let nav = document.getElementsByTagName("nav")[0];
 showButtonMobile.addEventListener('click', changeNavVisibleMobile, false);
 showButtonDesktop.addEventListener('click', changeNavVisibleDesktop, false);
