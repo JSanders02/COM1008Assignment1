@@ -1,0 +1,205 @@
+/* Custom Properties */
+:root {
+    --header-background-colour: #ff0000;
+    --header-text-colour: #FEFBE0;
+    --nav-background-colour: #ff0000;
+    --nav-text-colour: #FEFBE0;
+    --main-background-colour: #FEFBE0;
+    --main-text-colour: #1B1B1B;
+    --footer-background-colour: #FEFBE0;
+    --footer-text-colour: #1B1B1B;
+}
+
+/* Tweakpoints */
+/* Adjust positioning of site title when it wraps onto two rows to prevent it from being off-centre */
+@media screen and (max-width: 425px) {
+    header h1 {
+        position: absolute;
+        margin: 0.2em 20%;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    header h1 {
+        padding: 0.25em 0;
+        margin: auto 0;
+    }
+}
+
+html, body {
+    height: 100%;
+    background-color: var(--main-background-colour);
+}
+
+/* General Tags */
+h1, h2, h3 {
+    font-family: Georgia, serif;
+
+    color: var(--main-text-colour);
+}
+
+p, a, button, figcaption {
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+
+    color: var(--main-text-colour);
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 5em;
+
+    border-bottom: 1px solid black;
+
+    background-color: var(--header-background-colour);
+    transition: 0.6s ease;
+
+    text-align: center;
+}
+
+header h1 {
+    color: var(--header-text-colour);
+}
+
+#logo {
+    height: 100%;
+    padding-left: 5%;
+}
+
+#logo img {
+    height: 80%;
+}
+
+/* Navigation */
+
+#showNavDesktop {
+    display: none;
+}
+
+#showNavMobile {
+    width: 100%;
+    height: 3em;
+    border: none;
+
+    background-color: var(--nav-background-colour);
+
+    text-align: center;
+    text-decoration: none;
+    color: var(--nav-text-colour);
+
+    transition: width 0.2s ease, border-bottom-right-radius 0.1s ease;
+}
+
+.navShown {
+    height: 18.25em;
+}
+
+nav {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid black;
+    transition: height 0.5s ease;
+}
+
+nav li {
+    height: 3em;
+    border-top: 1px solid black;
+}
+
+nav ul {
+    height: 100%;
+    overflow: hidden;
+}
+
+nav a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+
+    background-color: var(--nav-background-colour);
+
+    text-align: center;
+    text-decoration: none;
+}
+
+nav a p {
+    padding-top: 1em;
+    color: var(--nav-text-colour);
+}
+
+/* Main Content */
+main {
+    height: max-content;
+    padding: 0.5em 5% 1em 5%;
+}
+
+main h1 {
+    font-size: 2em;
+    float: left;
+    padding-right: 5px;
+}
+
+main p {
+    padding: 0.25em 0 0.75em 0;
+}
+
+figure {
+    margin: 0.25em 2% 0.25em 0;
+}
+
+figure img {
+    max-width: 100%;
+}
+
+figcaption {
+    font-size: 0.5em;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#screenshot {
+    border: 1px solid black;
+    width: 90vw;
+    height: 45vw;
+}
+
+/* Footer */
+footer {
+    width: 90%;
+
+    padding: 2% 0 5% 0;
+    margin-left: 5%;
+    border-top: 1px solid black;
+
+    font-size: 0.5em;
+    text-align: center;
+}
+
+
+/*FunkyEE*/
+.ee1 {background-color: red;}
+.ee2 {background-color: orange;}
+.ee3 {background-color: yellow;}
+.ee4 {background-color: green;}
+.ee5 {background-color: blue;}
+.ee6 {background-color: indigo;}
+.ee7 {background-color: violet;}

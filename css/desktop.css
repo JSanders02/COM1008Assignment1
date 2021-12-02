@@ -1,0 +1,205 @@
+/* Tweakpoints */
+
+.navShownButtonEffect, nav a {width: 25%;}
+
+@media screen and (min-width: 1300px) {
+    .navShownButtonEffect, nav a {width: 20%;}
+}
+
+/* Adjusting header sizes on small screens, to prevent clipping onto next line */
+h1 {font-size: 2em}
+h2 {font-size: 2em}
+h3 {font-size: 1.5em}
+
+@media screen and (min-width: 700px) {
+    h1 {font-size: 3em;}
+    h2 {font-size: 3em;}
+    h3 {font-size: 2em;}
+}
+
+/* Changes size of font and background in navbar to prevent clipping at small screen sizes */
+nav a p {
+    font-size: 2em;
+    background: url(/img/bulletPoint.png) left no-repeat;
+    background-size: 0.4rem;
+}
+
+@media screen and (min-height: 350px) {
+    nav a p {
+        font-size: 3em;
+        background: url(/img/bulletPoint.png) left no-repeat;
+        background-size: 0.55rem;
+    }
+}
+
+@media screen and (min-height: 600px) {
+    nav a p {
+        font-size: 5em;
+        background: url(/img/bulletPoint.png) left no-repeat;
+        background-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    nav a p {
+        font-size: 3em;
+        background: url(/img/bulletPoint.png) left no-repeat;
+        background-size: 0.55rem;
+    }
+}
+
+/* General Tags */
+:root {
+    --menu-offset: 5%;
+}
+
+/* Header */
+header {
+    padding-top: 2em;
+}
+
+/* Navigation */
+#showNavDesktop {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border: none;
+    padding-left: 5%;
+
+    background-color: rgba(0, 0, 0, 0);
+
+    text-align: center;
+    text-decoration: none;
+
+    transition: opacity 0.5s ease;
+}
+
+#showNavDesktop img {
+    height: 2em;
+}
+
+#showNavDesktop p {
+    margin: auto 0;
+    padding-left: 0.5em;
+
+    color: var(--nav-text-colour);
+}
+
+#showNavDesktop:hover {
+    cursor: pointer;
+}
+
+#showNavDesktopBackground {
+    width: 100%;
+    height: 2em;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(105, 105, 105, 0.9);
+}
+
+#showNavMobile {
+    display: none;
+}
+
+.navShown {
+    width: 100%;
+    height: calc(100% - 2em);
+}
+
+nav {
+    width: 0;
+    height: calc(100% - 2em);
+    background-color: rgba(105, 105, 105, 0.9);
+    position: fixed;
+    top: 2em;
+    transition: width 0.5s ease;
+    border-bottom: none;
+}
+
+nav ul {
+    height: 100%;
+    overflow: hidden;
+}
+
+
+nav li {
+    height: 16%;
+    border-top: none;
+    padding-left: 5%;
+}
+
+nav li:nth-child(1) {
+    margin-left: calc(var(--menu-offset)*1);
+}
+
+nav li:nth-child(2) {
+    margin-left: calc(var(--menu-offset)*2);
+}
+
+nav li:nth-child(3) {
+    margin-left: calc(var(--menu-offset)*3);
+}
+
+nav li:nth-child(4) {
+    margin-left: calc(var(--menu-offset)*4);
+}
+
+nav li:nth-child(5) {
+    margin-left: calc(var(--menu-offset)*5);
+}
+
+nav li:nth-child(6) {
+    margin-left: calc(var(--menu-offset)*6);
+}
+
+nav a {
+    width: max-content;
+    padding: 0 5% 0 0;
+    overflow: visible;
+    transition: 0.25s ease;
+
+    /* Transparent background colour */
+    background-color: transparent;
+
+    text-align: left;
+    line-height: calc((100vh - 2em) / 5);
+}
+
+nav a:hover {
+    padding-left: var(--menu-offset);
+}
+
+nav a p {
+    padding-top: 0.25rem;
+    padding-left: 1rem;
+    font-family: Georgia, serif;
+
+
+    white-space: nowrap;
+
+    color: var(--nav-text-colour);
+}
+
+/* Main Content */
+
+main {
+    overflow: auto;
+}
+
+main p {
+    padding: 0.25em 0 0.75em 0;
+}
+
+figure {
+    margin: 0.25em 2% 0.25em 0;
+    float: left;
+    clear: left;
+}
+
+#screenshot {
+    width: 40vw;
+    height: 20vw;
+}
