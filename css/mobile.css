@@ -211,7 +211,7 @@ figcaption {
 
     max-width: 100%;
 
-    font-size: .5em;
+    font-size: 1em;
 }
 
 #screenshot {
@@ -230,6 +230,45 @@ footer {
 
     font-size: .5em;
     text-align: center;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~Founder Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#founders-images {
+    display: grid;
+    grid-template-columns: 100%;
+    row-gap: 2em;
+}
+
+.founder-left,
+.founder-text-left,
+.founder-right,
+.founder-text-right {
+    grid-column: 1;
+}
+
+.founder-jack {
+    grid-row: 1;
+}
+
+.founder-jack+p {
+    grid-row: 2;
+}
+
+.founder-julie {
+    grid-row: 3;
+}
+
+.founder-julie+p {
+    grid-row: 4;
+}
+
+.founder-terrence {
+    grid-row: 5;
+}
+
+.founder-terrence+p {
+    grid-row: 6;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -298,5 +337,30 @@ textarea {
         position: static;
         margin: auto 0;
         padding: .25em 0;
+    }
+}
+
+@media screen and (min-width: 450px) {
+    #founders-images {
+        grid-template-columns: repeat(2, 50%);
+    }
+
+    .founder-right, .founder-text-right {
+        grid-column: 2;
+    }
+
+    .founder-jack,
+    .founder-jack+p {
+        grid-row: 1;
+    }
+
+    .founder-julie,
+    .founder-julie+p {
+        grid-row: 2;
+    }
+
+    .founder-terrence,
+    .founder-terrence+p {
+        grid-row: 3;
     }
 }

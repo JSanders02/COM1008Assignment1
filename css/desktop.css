@@ -264,6 +264,25 @@ form {
     }
 }
 
+@media screen and (min-width: 850px) {
+    #founders-images {
+        grid-template-columns: 25% 50% 25%;
+    }
+
+    .founder-left {
+        grid-column: 1;
+    }
+
+    .founder-text-left,
+    .founder-text-right {
+        grid-column: 2;
+    }
+
+    .founder-right {
+        grid-column: 3;
+    }
+}
+
 @media screen and (min-width: 1300px) {
     /* Adjust size of image as screen gets larger */
     #screenshot {
