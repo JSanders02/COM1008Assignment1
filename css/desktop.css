@@ -188,6 +188,12 @@ form {
 
 #company-info {
     max-width: 50%;
+
+    text-align: left;
+}
+
+#company-info p {
+    font-size: 0.75em;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -213,10 +219,10 @@ form {
     }
 }
 
-@media screen and (max-width: 700px) {
-    /* Decrease font size as screen gets smaller */
+@media screen and (min-width: 700px) {
+    /* Increse font size as screen gets wider */
     #company-info p {
-        font-size: 0.75em;
+        font-size: 1em;
     }
 }
 
@@ -240,15 +246,12 @@ form {
         width: 50%;
     }
 
-    #name-and-email {
-        flex-direction: row;
+    .name-email-input:last-child {
+        margin-left: 5%;
     }
 
-    /* Remove right hand border of name input, to avoid border 'doubling up' and
-    appearing too thick
-     */
-    #input-name {
-        border-right: none;
+    #name-and-email {
+        flex-direction: row;
     }
 }
 
