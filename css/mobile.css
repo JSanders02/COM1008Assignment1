@@ -13,6 +13,17 @@
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~General Tags~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Add a border around elements when they are focused (selected using tab or
+otherwise - helps keep the website accessible
+ */
+* {
+    transition: border .25s ease;
+}
+
+*:focus {
+    border: 1px solid blue;
+}
+
 html,
 body {
     height: 100%;
@@ -22,7 +33,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+label {
     font-family: Georgia, serif;
     color: var(--main-text-colour);
 }
@@ -41,13 +53,30 @@ h3 {
     font-size: 1.5em;
 }
 
+label {
+    font-size: 1em;
+}
+
 p,
 a,
+small,
 button,
-figcaption {
-    font-size: 1em;
+textarea,
+figcaption,
+input[type=text],
+input[type=email] {
     font-family: Verdana, sans-serif;
     color: var(--main-text-colour);
+}
+
+textarea,
+input[type=text],
+input[type=email] {
+    font-size: 0.75em;
+}
+
+small {
+    font-size: 0.5em;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -195,11 +224,52 @@ figcaption {
 footer {
     margin-left: 5%;
     border-top: 1px solid black;
-    padding: 2% 0 5% 0;
+    padding: 1em 0;
     width: 90%;
 
     font-size: .5em;
     text-align: center;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~Contact Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+form,
+input,
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+form > * {
+    margin-top: 0.25em;
+}
+
+input {
+    height: 3em;
+}
+
+input,
+textarea {
+    border: 1px solid black;
+}
+
+input[type=submit],
+input[type=reset] {
+    border: none;
+}
+
+textarea {
+    resize: none;
+}
+
+#contact-us {
+    display: flex;
+    flex-direction: column;
+}
+
+#name-and-email {
+    display: flex;
+    flex-direction: column;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

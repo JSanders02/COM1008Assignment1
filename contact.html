@@ -40,7 +40,36 @@
 
     <main>
         <h2>Contact</h2>
-
+        <div id="contact-us">
+            <form name="contact-form" enctype="text/plain"
+                  action="mailto: jsanders4@sheffield.ac.uk" method="POST">
+                <div id="name-and-email">
+                    <div class="name-email-input">
+                        <label for="input-name">Your Name:</label>
+                        <input id="input-name" type="text" name="Name"
+                               placeholder="Enter your name...">
+                    </div>
+                    <div class="name-email-input">
+                        <label for="input-email">Your Email:</label>
+                        <input id="input-email" type="email" name="Email"
+                               placeholder="Enter your email...">
+                    </div>
+                </div>
+                <label for="input-query">Your Query:</label>
+                <textarea id = "input-query" name="Query" rows="20"
+                          placeholder="Enter your query..."></textarea>
+                <input type="submit">
+                <input type="reset">
+            </form>
+            <div id="company-info">
+                <p>Lambton Entertainment<br>Penshaw Monument<br>Chester
+                    Road<br>Penshaw<br>DH4 7NJ</p>
+                <p>Call: 01234 567 890<br>Email: info@lambtonentertainment.co.uk</p>
+                <small>Lambton Entertainment Ltd is a company
+                    registered in England and Wales with Company Number 1234567.
+                    VAT No.123 4567 89</small>
+            </div>
+        </div>
     </main>
 
     <footer>

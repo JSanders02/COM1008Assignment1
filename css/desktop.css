@@ -176,10 +176,26 @@ figure {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~Contact Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+form {
+    width: 45%;
+    margin-right: 5%;
+}
+
+#contact-us {
+    flex-direction: row;
+}
+
+#company-info {
+    max-width: 50%;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Media Queries~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @media screen and (min-height: 350px) {
     /* Changes size of font and background in navbar to prevent clipping at
-       small screen sizes */
+    small screen sizes
+     */
     nav a p {
         background: url(/img/bulletPoint.png) left no-repeat;
         background-size: .55rem;
@@ -197,8 +213,16 @@ figure {
     }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (max-width: 700px) {
+    /* Decrease font size as screen gets smaller */
+    #company-info p {
+        font-size: 0.75em;
+    }
+}
+
+@media screen and (min-width: 850px) {
     /* Increase font size as screen gets wider */
+    /* Before this tweakpoint - tablet design, after - PC */
     h1,
     h2 {
         font-size: 3em;
@@ -206,6 +230,25 @@ figure {
 
     h3 {
         font-size: 2em;
+    }
+
+    input {
+        height: 2em;
+    }
+
+    .name-email-input {
+        width: 50%;
+    }
+
+    #name-and-email {
+        flex-direction: row;
+    }
+
+    /* Remove right hand border of name input, to avoid border 'doubling up' and
+    appearing too thick
+     */
+    #input-name {
+        border-right: none;
     }
 }
 
