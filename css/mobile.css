@@ -80,7 +80,6 @@ small {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Header~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 header {
-    position: static;
     display: flex;
     flex-direction: row;
 
@@ -105,7 +104,7 @@ header h1 {
 
 #logo {
     height: 100%;
-    padding-left: 5%;
+    padding: 0 2% 0 5%;
 }
 
 #logo img {
@@ -198,10 +197,6 @@ main p {
     padding: .25em 0 .75em 0;
 }
 
-figure {
-    margin: .25em 2% .25em 0;
-}
-
 figure img {
     max-width: 100%;
 }
@@ -215,6 +210,7 @@ figcaption {
 }
 
 #screenshot {
+    margin: .25em 2% .25em 0;
     border: 1px solid black;
     width: 90vw;
     height: 45vw;
@@ -234,41 +230,22 @@ footer {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Founder Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#founders-images {
-    display: grid;
-    grid-template-columns: 100%;
-    row-gap: 2em;
+.founder-image,
+.founder-image img {
+    width: 100%;
 }
 
-.founder-left,
-.founder-text-left,
-.founder-right,
-.founder-text-right {
-    grid-column: 1;
+.founder-image figcaption {
+    text-align: center;
 }
 
-.founder-jack {
-    grid-row: 1;
-}
+#founder-jack,
+#founder-julie,
+#founder-terrence {
+    display: flex;
+    flex-direction: column;
 
-.founder-jack+p {
-    grid-row: 2;
-}
-
-.founder-julie {
-    grid-row: 3;
-}
-
-.founder-julie+p {
-    grid-row: 4;
-}
-
-.founder-terrence {
-    grid-row: 5;
-}
-
-.founder-terrence+p {
-    grid-row: 6;
+    margin: .75em 0;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -341,26 +318,32 @@ textarea {
 }
 
 @media screen and (min-width: 450px) {
-    #founders-images {
-        grid-template-columns: repeat(2, 50%);
+    #founder-jack,
+    #founder-terrence {
+        flex-direction: row;
     }
 
-    .founder-right, .founder-text-right {
-        grid-column: 2;
+    #founder-julie {
+        flex-direction: row-reverse;
+        text-align: right;
     }
 
-    .founder-jack,
-    .founder-jack+p {
-        grid-row: 1;
+    .founder-image {
+        flex: 1 1 0;
+
+        border-left: 1px solid var(--main-text-colour);
+        padding: 0 0 0 2%;
     }
 
-    .founder-julie,
-    .founder-julie+p {
-        grid-row: 2;
+    .founder-desc {
+        flex: 2 1 0;
+
+        margin: auto 5px;
     }
 
-    .founder-terrence,
-    .founder-terrence+p {
-        grid-row: 3;
+    .right-border {
+        border-left: none;
+        border-right: 1px solid var(--main-text-colour);
+        padding: 0 2% 0 0;
     }
 }
