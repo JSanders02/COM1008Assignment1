@@ -1,4 +1,9 @@
 function changeNavVisibleMobile() {
+    if (nav.dataset.expanded === 'false') {
+        nav.dataset.expanded = 'true';
+    } else {
+        nav.dataset.expanded = 'false';
+    }
     nav.classList.toggle('nav-shown'); // Expands nav menu
     toggleNavFocus() // Toggle whether nav items can be selected by tab
 
@@ -14,12 +19,14 @@ function changeNavVisibleDesktop() {
     nav.classList.toggle('nav-shown'); // Expands nav menu
     toggleNavFocus() // Toggle whether nav items can be selected by tab
     showButtonDesktop.style.opacity = '0';
-    if (showButtonDesktop.innerHTML === '<img src="img/menuClosed.png"><p>Menu</p>') {
+    if (nav.dataset.expanded === 'false') {
+        nav.dataset.expanded = 'true';
         setTimeout(function (){
             showButtonDesktop.innerHTML = '<img src="img/menuOpen.png"><p>Close</p>';
             showButtonDesktop.style.opacity = '100';
         }, 250)
     } else {
+        nav.dataset.expanded = 'false';
         setTimeout(function (){
             showButtonDesktop.innerHTML = '<img src="img/menuClosed.png"><p>Menu</p>';
             showButtonDesktop.style.opacity = '100';
@@ -45,6 +52,7 @@ function toggleNavFocus() {
 let showButtonMobile = document.getElementById('show-nav-mobile');
 let showButtonDesktop = document.getElementById('show-nav-desktop');
 let nav = document.getElementsByTagName("nav")[0];
+nav.dataset.expanded = 'false';
 showButtonMobile.addEventListener('click', changeNavVisibleMobile, false);
 showButtonDesktop.addEventListener('click', changeNavVisibleDesktop, false);
 showButtonDesktop.innerHTML = '<img src="img/menuClosed.png"><p>Menu</p>'; // Fixes innerHTML to match if statement

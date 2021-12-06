@@ -174,6 +174,7 @@ nav a p {
 /* ~~~Main Content~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 main {
+    margin-top: 0;
     overflow: auto;
 }
 
@@ -209,6 +210,21 @@ form {
 
 #company-info p {
     font-size: 0.75em;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.news-article {
+    /* Set width and margin to add up to 33% so that only 3 articles appear per
+    line
+     */
+    margin: .5em 2%;
+    width: 29%;
+}
+
+.news-article-image {
+    margin: 0 2% 0 0;
+    float: left;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -254,6 +270,8 @@ form {
         font-size: 2em;
     }
 
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~Contact Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     input {
         height: 2em;
     }
@@ -271,6 +289,21 @@ form {
         now wide enough to do this
          */
         flex-direction: row;
+    }
+
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+    .news-article {
+        /* Set width and margin to add up to 25% so that only 4 articles appear per
+        line
+         */
+        margin: .5em 2%;
+        width: 21%;
+    }
+
+    .news-article-image {
+        width: 33%;
     }
 }
 

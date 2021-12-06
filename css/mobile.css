@@ -191,6 +191,7 @@ nav a p {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Main Content~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 main {
+    margin-top: 3em; /* Move main below nav button */
     height: max-content;
     /* Set left and right padding so content doesn't go right to the edge of the
      screen
@@ -301,6 +302,44 @@ textarea {
 
 #company-info {
     text-align: center;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.news-article {
+    overflow: hidden;
+
+    margin: .5em 0;
+    height: max-content;
+}
+
+.news-article h3 {
+    margin-bottom: .5em;
+    text-align: center;
+}
+
+.news-article p {
+    /* Border box needed here as, without it, showArticle.js gets the height
+    including padding, and then sets height not including padding, causing
+    articles to grow each time they are opened.
+     */
+    box-sizing: border-box;
+    transition: height .5s ease;
+}
+
+.news-article:hover {
+    cursor: pointer;
+}
+
+.news-article-image {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#articles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
