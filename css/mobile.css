@@ -1,9 +1,13 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Custom Properties~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 :root {
+    /* Using custom properties for colours, so I can easily change the colour
+    scheme if I so choose.
+     */
     --header-background-colour: #f00;
     --header-text-colour: #FEFBE0;
     --nav-background-colour: #f00;
+    --nav-focus-background-colour: #d00;
     --nav-text-colour: #FEFBE0;
     --main-background-colour: #FEFBE0;
     --main-text-colour: #1B1B1B;
@@ -13,6 +17,7 @@
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~General Tags~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 /* Add a border around elements when they are focused (selected using tab or
 otherwise - helps keep the website accessible
  */
@@ -21,7 +26,7 @@ otherwise - helps keep the website accessible
 }
 
 *:focus {
-    border: 1px solid blue;
+    outline: 3px solid blue;
 }
 
 html,
@@ -31,10 +36,18 @@ body {
     background-color: var(--main-background-colour);
 }
 
+/* Set font-family, font-size, and color to default values, to avoid needing to
+specify for everything that isn't a heading
+ */
+* {
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+    color: var(--main-text-colour);
+}
+
 h1,
 h2,
-h3,
-label {
+h3 {
     font-family: Georgia, serif;
     color: var(--main-text-colour);
 }
@@ -53,20 +66,6 @@ h3 {
     font-size: 1.5em;
 }
 
-p,
-a,
-small,
-label,
-button,
-textarea,
-figcaption,
-input[type=text],
-input[type=email] {
-    font-family: Verdana, sans-serif;
-    font-size: 1em;
-    color: var(--main-text-colour);
-}
-
 textarea,
 input[type=text],
 input[type=email] {
@@ -80,10 +79,11 @@ small {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Header~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 header {
+    /* Using flex here to keep heading and logo on same line when both have
+    position: static, and to avoid having to use float in both
+     */
     display: flex;
     flex-direction: row;
-
-    transition: .6s ease;
 
     border-bottom: 1px solid black;
     width: 100%;
@@ -95,6 +95,9 @@ header {
 }
 
 header h1 {
+    /* Absolute position ensures that the header stays centred, and doesn't get
+    pushed right by the logo when it has wrapped onto two lines
+     */
     position: absolute;
 
     margin: 0.5em 20%;
@@ -108,25 +111,30 @@ header h1 {
 }
 
 #logo img {
+    margin: 10% 0; /* Vertically centre logo */
     height: 80%;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Navigation~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 nav {
-    position: absolute;
+    position: absolute; /* Stop menu from pushing other elements down */
 
     transition: height .5s ease;
 
     margin: 0;
-    border-bottom: 1px solid black;
     width: 100%;
-    height: 0;
+    height: 0; /* Initially set height to 0, as nav is hidden */
     padding: 0;
 }
 
+nav *:focus {
+    /* Change background colour on focus, as blue outline isn't very visible */
+    background-color: var(--nav-focus-background-colour);
+}
+
 nav li {
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     height: 3em;
 }
 
@@ -161,6 +169,7 @@ nav a p {
 }
 
 #show-nav-desktop {
+    /* Hide desktop-specific show button */
     display: none;
 }
 
@@ -168,6 +177,7 @@ nav a p {
     transition: width .2s ease, border-bottom-right-radius .1s ease;
 
     border: none;
+    border-bottom: 1px solid black;
     width: 100%;
     height: 3em;
 
@@ -182,15 +192,10 @@ nav a p {
 /* ~~~Main Content~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 main {
     height: max-content;
+    /* Set left and right padding so content doesn't go right to the edge of the
+     screen
+     */
     padding: .5em 5% 1em 5%;
-}
-
-main h1 {
-    float: left;
-
-    padding-right: 5px;
-
-    font-size: 2em;
 }
 
 main p {
@@ -212,7 +217,7 @@ figcaption {
 #screenshot {
     margin: .25em 2% .25em 0;
     border: 1px solid black;
-    width: 90vw;
+    width: 90vw; /* Take up 90% of viewport width (ful width of main) */
     height: 45vw;
 }
 
@@ -232,7 +237,7 @@ footer {
 /* ~~~Founder Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .founder-image,
 .founder-image img {
-    width: 100%;
+    width: 100%; /* Take 100% width of parent (main) */
 }
 
 .founder-image figcaption {
@@ -253,6 +258,9 @@ footer {
 form,
 input,
 textarea {
+    /* Make the width attribute include borders, giving consistent sizing for
+    input elements.
+     */
     box-sizing: border-box;
     width: 100%;
 }
@@ -278,12 +286,12 @@ input[type=reset] {
 }
 
 textarea {
-    resize: none;
+    resize: none; /* Prevent user from resizing textarea element */
 }
 
 #contact-us {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Show contact form and company info stacked */
 }
 
 #name-and-email {
@@ -298,6 +306,7 @@ textarea {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Media Queries~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @media screen and (min-width: 350px) {
+    /* Increases font sizes as screen width increases */
     h1,
     h2 {
         font-size: 2em;
@@ -320,28 +329,45 @@ textarea {
 @media screen and (min-width: 450px) {
     #founder-jack,
     #founder-terrence {
+        /* Moves image and description to be side-by-side when there is enough
+        screen width to do so
+         */
         flex-direction: row;
     }
 
     #founder-julie {
+        /* Sets flex-direction to row-reverse, so that this founder's image is
+        on the right, and the description is on the left, to match the design
+        specified in my planning document
+         */
         flex-direction: row-reverse;
         text-align: right;
     }
 
     .founder-image {
+        /* Set founder images to grow at a normal pace relative to the rest */
         flex: 1 1 0;
 
+        /* Add a border between the description and image, to make them easy to
+        distinguish from one another
+         */
         border-left: 1px solid var(--main-text-colour);
         padding: 0 0 0 2%;
     }
 
     .founder-desc {
+        /* Set founder images to grow twice as fast relative to the rest,
+        resulting in a 2:1 ratio of description:image
+         */
         flex: 2 1 0;
 
         margin: auto 5px;
     }
 
     .right-border {
+        /* For first and last founders, the border needs to be on the right of
+        the image
+         */
         border-left: none;
         border-right: 1px solid var(--main-text-colour);
         padding: 0 2% 0 0;

@@ -1,7 +1,7 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Custom Properties~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 :root {
-    --menu-offset: 5%;
+    --menu-offset: 5%; /* Controls how much each menu item moves to the right */
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -25,11 +25,15 @@ nav {
     top: 2em;
 
     transition: width .5s ease;
-
-    border-bottom: none;
-    width: 0;
-    height: calc(100% - 2em);
+    width: 0; /* width = 0  as nav starts hidden */
+    height: calc(100% - 2em); /* Set height to 100% - height of the button */
+    /* Let background be slightly transparent, for a nice modern look */
     background-color: rgba(105, 105, 105, 0.9);
+}
+
+nav *:focus {
+    /* Remove focus background colour set in mobile.css */
+    background-color: transparent;
 }
 
 nav ul {
@@ -39,11 +43,14 @@ nav ul {
 }
 
 nav li {
-    border-top: none;
+    border: none;
     height: 16%;
     padding-left: 5%;
 }
 
+/* Set margin of each menu item to be 1 menu offset more than that of the
+previous, to create a 'stepped' look
+ */
 nav li:nth-child(1) {
     margin-left: calc(var(--menu-offset) * 1);
 }
@@ -82,16 +89,24 @@ nav a {
     text-align: left;
 }
 
-nav a:hover {
+/* When a nav item is hovered over (or focused), move it to the right, to show
+that it has been selected
+ */
+nav a:hover,
+nav a:focus {
     padding-left: var(--menu-offset);
 }
 
 nav a p {
-    white-space: nowrap;
+    white-space: nowrap; /* Prevent text from wrapping onto a second line */
 
     padding-top: .25rem;
     padding-left: 1rem;
 
+    /*  Using an image of a bullet point rather than a • character, as using a
+    character would result in it also showing up on the mobile version of the
+    site, which is undesirable
+     */
     background: url(/img/bulletPoint.png) left no-repeat;
     background-size: .4rem;
 
@@ -101,12 +116,12 @@ nav a p {
 }
 
 .nav-shown {
-    width: 100%;
+    width: 100%; /* Set width to 100% when shown */
     height: calc(100% - 2em);
 }
 
 #show-nav-desktop {
-    display: flex;
+    display: flex; /* Keep image and button text together */
     flex-direction: row;
 
     transition: opacity .5s ease;
@@ -123,6 +138,9 @@ nav a p {
 }
 
 #show-nav-desktop:hover {
+    /* Change cursor, as a visual indicator that the user can click the
+    button
+     */
     cursor: pointer;
 }
 
@@ -164,7 +182,7 @@ main p {
 }
 
 #screenshot {
-    float: left;
+    float: left; /* Let main text wrap around the screenshot */
     clear: left;
 
     margin: .25em 2% .25em 0;
@@ -180,7 +198,7 @@ form {
 }
 
 #contact-us {
-    flex-direction: row;
+    flex-direction: row; /* Show contact form and address next to each other */
 }
 
 #company-info {
@@ -208,6 +226,7 @@ form {
 }
 
 @media screen and (min-height: 600px) {
+    /* Increase size of text and bullet points, to be more visible */
     nav a p {
         background: url(/img/bulletPoint.png) left no-repeat;
         background-size: .7rem;
@@ -248,12 +267,16 @@ form {
     }
 
     #name-and-email {
+        /* Display name and email form fields next to each other, as screen is
+        now wide enough to do this
+         */
         flex-direction: row;
     }
 }
 
 @media screen and (max-width: 800px) {
     nav a p {
+        /* Increase size of text and bullet points, to be more visible */
         background: url(/img/bulletPoint.png) left no-repeat;
         background-size: .55rem;
 
@@ -262,6 +285,10 @@ form {
 }
 
 @media screen and (min-width: 850px) {
+    /* Add space next to founder descriptions, so they don't go underneath the
+    image of the previous founder, to match the design specified in my planning
+    document
+     */
     .founder-desc {
         margin: auto 2% auto 27%
     }
