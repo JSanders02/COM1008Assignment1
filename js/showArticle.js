@@ -23,7 +23,20 @@ function toggleArticle(event) {
     } else {
         img.style.removeProperty('width');
         img.style.removeProperty('float');
-        article.style.height = totalHeight + 'px';
+        if (window.innerWidth > 500) {
+            /* On desktop, set the height of the article to include the
+             maximum heading height of all articles - this means that the
+              bottoms of the articles will be lined up with one another,
+               making the page look consistent.
+             */
+            article.style.height = totalHeight + maxHeadingHeight + 'px';
+        } else {
+            /* If on mobile, just add the heading height of the current
+             article - doesn't matter if articles have different heights as
+              they are not aligned next to each other
+             */
+            article.style.height = totalHeight + heading.offsetHeight + 'px';
+        }
         article.expanded = 'false';
     }
 }
@@ -59,11 +72,15 @@ function resetArticleSize() {
         }
     }
 
+    // Set the max possible height of an article - not including the heading
     if (window.innerWidth > 500) {
         // If on desktop
-        totalHeight = (windowHeight / 5) + maxHeadingHeight;
+        totalHeight = (windowHeight / 5);
     } else {
-        totalHeight = (windowHeight / 10) + img.offsetHeight + heading.offsetHeight;
+        /* If on mobile, image height needs to be taken into account - on
+         desktop, text floats around the image so it can be ignored.
+         */
+        totalHeight = (windowHeight / 10) + img.offsetHeight;
     }
 
     
