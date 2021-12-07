@@ -24,16 +24,12 @@ function toggleArticle(event) {
         for (let i=0; i<articleFullSizes.length; i++) {
             if (articleFullSizes[i][0] === p) {
                 // Retrieve full size of article from array.
-                p.style.height = (articleFullSizes[i][1]) + 'px';
                 img.style.width = '100%';
-                console.log(articleFullSizes[i][1]);
-                console.log(maxImageHeight);
                 article.style.height =  maxImageHeight + heading.offsetHeight + articleFullSizes[i][1] + 'px';
             }
         }
         p.dataset.expanded = 'true';
     } else {
-        p.style.height = (totalHeight - heading.offsetHeight) + 'px';
         img.style.removeProperty('width');
         img.style.removeProperty('float');
         article.style.height = totalHeight + 'px';
@@ -54,8 +50,8 @@ function resetArticleSize() {
 
         // Get paragraph - second child of the article
         let p = article.children[2];
-        // Reset heights to CSS-defined value
-        p.style.removeProperty('height');
+
+        // Reset height to CSS-defined value
         article.style.removeProperty('height');
 
         // Get image
@@ -64,24 +60,15 @@ function resetArticleSize() {
         // Get heading
         let heading = article.children[0];
 
-        /* Set default height of paragraph element */
-        p.style.height = '100%';
         console.log(i);
         articleFullSizes[i] = [p, p.offsetHeight];
         if (i === 0) {
-            // Set first article to a default height
-            p.style.height = (windowHeight / 5 + 0.4) + 'px';
             totalHeight = (windowHeight / 5 + 0.4) + heading.offsetHeight;
 
             // Get max height of image
             img.style.transition = 'none';
             img.style.width = '100%';
             maxImageHeight = img.offsetHeight;
-        } else {
-            /* Use total height and subtract height of heading, so that the
-             bottom of every article lines up, creating a nicer look.
-             */
-            p.style.height = (totalHeight - heading.offsetHeight) + 'px';
         }
 
         img.style.removeProperty('width');
