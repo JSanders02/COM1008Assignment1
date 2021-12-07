@@ -324,6 +324,12 @@ textarea {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.date {
+    font-size: 0.75em;
+    padding-bottom: 1em;
+    text-align: center;
+}
+
 .news-article {
     overflow: hidden;
 
@@ -333,7 +339,7 @@ textarea {
 }
 
 .news-article h3 {
-    padding-bottom: .5em;
+    padding-bottom: .25em;
     text-align: center;
 }
 

@@ -3,10 +3,13 @@ function toggleArticle(event) {
     let article = event.currentTarget;
 
     // Select the paragraph in the news article that was clicked
-    let p = article.children[2];
+    let p = article.children[3];
 
     // Select the image in the article that was clicked
-    let img = article.children[1];
+    let img = article.children[2];
+
+    // Select the date of the article that was clicked
+    let date = article.children[1];
 
     // Select the heading of the article that was clicked
     let heading = article.children[0];
@@ -16,27 +19,30 @@ function toggleArticle(event) {
       '100%'.
      */
     if (article.expanded === 'false') {
-        // Retrieve full size of article from array.
         img.style.width = '100%';
-        article.style.height =  maxImageHeight + heading.offsetHeight + p.offsetHeight + 'px';
+        // Set article to max height
+        article.style.height =  maxImageHeight + heading.offsetHeight + date.offsetHeight + p.offsetHeight + 'px';
         article.expanded = 'true';
     } else {
         img.style.removeProperty('width');
         img.style.removeProperty('float');
+
+        let extraHeight;
         if (window.innerWidth > 500) {
             /* On desktop, set the height of the article to include the
-             maximum heading height of all articles - this means that the
+             maximum heading/date height of all articles - this means that the
               bottoms of the articles will be lined up with one another,
                making the page look consistent.
              */
-            article.style.height = totalHeight + maxHeadingHeight + 'px';
+            extraHeight = maxHeadingHeight + maxDateHeight;
         } else {
-            /* If on mobile, just add the heading height of the current
+            /* If on mobile, just add the heading/date height of the current
              article - doesn't matter if articles have different heights as
               they are not aligned next to each other
              */
-            article.style.height = totalHeight + heading.offsetHeight + 'px';
+            extraHeight = heading.offsetHeight + date.offsetHeight;
         }
+        article.style.height = totalHeight + extraHeight + 'px';
         article.expanded = 'false';
     }
 }
@@ -46,14 +52,17 @@ function resetArticleSize() {
     totalHeight = 0;
     maxImageHeight = 0;
     maxHeadingHeight = 0;
+    maxDateHeight = 0;
 
     let windowHeight = window.innerHeight;
-    console.log(windowHeight);
     for (let i=0; i<articles.length; i++) {
         let article = articles[i];
 
         // Get image
-        var img = article.children[1];
+        var img = article.children[2];
+
+        // Get date
+        let date = article.children[1];
 
         // Get heading
         let heading = article.children[0];
@@ -69,6 +78,9 @@ function resetArticleSize() {
 
         if (heading.offsetHeight > maxHeadingHeight) {
             maxHeadingHeight = heading.offsetHeight;
+        }
+        if (date.offsetHeight > maxDateHeight) {
+            maxDateHeight = date.offsetHeight;
         }
     }
 
@@ -87,17 +99,20 @@ function resetArticleSize() {
     for (let i=0; i<articles.length; i++) {
         let article = articles[i];
         let heading = article.children[0];
+        let date = article.children[1];
         article.addEventListener('click', toggleArticle, false);
 
         // Reset height to CSS-defined value
         article.style.removeProperty('height');
 
         // Set article element to default starting height - to avoid using auto
+        let extraHeight
         if (window.innerWidth > 500) {
-            article.style.height = totalHeight + maxHeadingHeight + 'px';
+            extraHeight = maxHeadingHeight + maxDateHeight;
         } else {
-            article.style.height = totalHeight + heading.offsetHeight + 'px';
+            extraHeight = heading.offsetHeight + date.offsetHeight;
         }
+        article.style.height = totalHeight + extraHeight + 'px';
 
         // https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
         /* Set HTML data-expanded to false (so the script knows that the article
@@ -126,6 +141,7 @@ let timer = 'false';
 let totalHeight;
 let maxImageHeight;
 let maxHeadingHeight;
+let maxDateHeight;
 
 window.addEventListener('resize', resizeAction, false);
 window.addEventListener('load', resetArticleSize, false);
