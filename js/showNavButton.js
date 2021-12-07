@@ -22,13 +22,15 @@ function changeNavVisibleDesktop() {
     if (nav.dataset.expanded === 'false') {
         nav.dataset.expanded = 'true';
         setTimeout(function (){
-            showButtonDesktop.innerHTML = '<img src="img/menuOpen.png"><p>Close</p>';
+            showButtonDesktop.innerHTML = '<img' +
+                ' src="img/menuOpen.png"><p>Close</p>';
             showButtonDesktop.style.opacity = '100';
         }, 250)
     } else {
         nav.dataset.expanded = 'false';
         setTimeout(function (){
-            showButtonDesktop.innerHTML = '<img src="img/menuClosed.png"><p>Menu</p>';
+            showButtonDesktop.innerHTML = '<img' +
+                ' src="img/menuClosed.png"><p>Menu</p>';
             showButtonDesktop.style.opacity = '100';
         }, 250)
     }
@@ -55,5 +57,4 @@ let nav = document.getElementsByTagName("nav")[0];
 nav.dataset.expanded = 'false';
 showButtonMobile.addEventListener('click', changeNavVisibleMobile, false);
 showButtonDesktop.addEventListener('click', changeNavVisibleDesktop, false);
-showButtonDesktop.innerHTML = '<img src="img/menuClosed.png"><p>Menu</p>'; // Fixes innerHTML to match if statement
 toggleNavFocus();

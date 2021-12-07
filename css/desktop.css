@@ -215,10 +215,10 @@ form {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .news-article {
-    /* Set width and margin to add up to 33% so that only 3 articles appear per
+    /* Set width and padding to add up to 33% so that only 3 articles appear per
     line
      */
-    margin: .5em 2%;
+    padding: .5em 2%;
     width: 29%;
 }
 
@@ -295,10 +295,9 @@ form {
     /*~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     .news-article {
-        /* Set width and margin to add up to 25% so that only 4 articles appear per
+        /* Set width and padding to add up to 25% so that only 4 articles appear per
         line
          */
-        margin: .5em 2%;
         width: 21%;
     }
 

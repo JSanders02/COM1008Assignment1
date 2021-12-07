@@ -1,6 +1,15 @@
 function toggleArticle(event) {
+    // Select the article that was clicked
+    let article = event.currentTarget;
+
     // Select the paragraph in the news article that was clicked
-    let p = event.currentTarget.children[2];
+    let p = article.children[2];
+
+    // Select the image in the article that was clicked
+    let img = article.children[1];
+
+    // Select the heading of the article that was clicked
+    let heading = article.children[0];
 
     /* Script checks whether the article is expanded. If not, then it
      multiplies current height of the article by 5 to get the final height,
@@ -14,46 +23,73 @@ function toggleArticle(event) {
     if (p.dataset.expanded === 'false') {
         for (let i=0; i<articleFullSizes.length; i++) {
             if (articleFullSizes[i][0] === p) {
+                // Retrieve full size of article from array.
                 p.style.height = (articleFullSizes[i][1]) + 'px';
+                img.style.width = '100%';
+                console.log(articleFullSizes[i][1]);
+                console.log(maxImageHeight);
+                article.style.height =  maxImageHeight + heading.offsetHeight + articleFullSizes[i][1] + 'px';
             }
         }
         p.dataset.expanded = 'true';
     } else {
-        /* Get heading element (previous sibling of the previous sibling
-             (the image) of the paragraph).
-             */
-        let heading = p.previousElementSibling.previousElementSibling;
         p.style.height = (totalHeight - heading.offsetHeight) + 'px';
+        img.style.removeProperty('width');
+        img.style.removeProperty('float');
+        article.style.height = totalHeight + 'px';
         p.dataset.expanded = 'false';
     }
 }
 
 function resetArticleSize() {
+    articles = document.getElementById("articles").children;
+    articleFullSizes = [];
+    totalHeight = 0;
+    maxImageHeight = 0;
+
     let windowHeight = window.innerHeight;
     for (let i=0; i<articles.length; i++) {
-        articles[i].addEventListener('click', toggleArticle, false);
+        let article = articles[i];
+        article.addEventListener('click', toggleArticle, false);
 
         // Get paragraph - second child of the article
-        let p = articles[i].children[2];
+        let p = article.children[2];
+        // Reset heights to CSS-defined value
+        p.style.removeProperty('height');
+        article.style.removeProperty('height');
 
-        let heading = p.previousElementSibling.previousElementSibling;
+        // Get image
+        let img = article.children[1];
+
+        // Get heading
+        let heading = article.children[0];
 
         /* Set default height of paragraph element */
         p.style.height = '100%';
-        /* Add a little extra to the max height, to avoid final line being
-         cut off
-         */
-        articleFullSizes[i] = [p, p.offsetHeight + 32];
+        console.log(i);
+        articleFullSizes[i] = [p, p.offsetHeight];
         if (i === 0) {
             // Set first article to a default height
             p.style.height = (windowHeight / 5 + 0.4) + 'px';
             totalHeight = (windowHeight / 5 + 0.4) + heading.offsetHeight;
+
+            // Get max height of image
+            img.style.transition = 'none';
+            img.style.width = '100%';
+            maxImageHeight = img.offsetHeight;
         } else {
             /* Use total height and subtract height of heading, so that the
              bottom of every article lines up, creating a nicer look.
              */
             p.style.height = (totalHeight - heading.offsetHeight) + 'px';
         }
+
+        img.style.removeProperty('width');
+        // Reset transition to stylesheet-defined value
+        img.style.removeProperty('transition');
+
+        // Set article element to default starting height - to avoid using auto
+        article.style.height = totalHeight + 'px';
 
         // https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
         /* Set HTML data-expanded to false (so the script knows that the article
@@ -77,10 +113,11 @@ function resizeAction() {
     }
 }
 
-let articles = document.getElementById("articles").children
-let articleFullSizes = [];
-let timer = 'false'
-let totalHeight = 0;
+let articles;
+let articleFullSizes;
+let timer = 'false';
+let totalHeight;
+let maxImageHeight;
 
-resetArticleSize();
 window.addEventListener('resize', resizeAction, false);
+window.addEventListener('load', resetArticleSize, false);
