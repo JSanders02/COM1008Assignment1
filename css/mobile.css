@@ -76,6 +76,10 @@ small {
     font-size: 0.5em;
 }
 
+q {
+    font-style: italic;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Header~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 header {
@@ -215,10 +219,6 @@ figcaption {
     font-size: 1em;
 }
 
-.quotation {
-    font-style: italic;
-}
-
 #screenshot {
     margin: .25em 2% .25em 0;
     border: 1px solid black;
@@ -315,7 +315,7 @@ textarea {
 
     transition: height .5s ease;
 
-    padding: .5em 0;
+    padding: 1em 0;
 }
 
 .news-article h3 {

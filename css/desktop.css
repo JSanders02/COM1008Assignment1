@@ -215,11 +215,11 @@ form {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .news-article {
-    /* Set width and padding to add up to 33% so that only 3 articles appear per
+    /* Set width and padding to add up to 50% so that only 2 articles appear per
     line
      */
-    padding: .5em 2%;
-    width: 29%;
+    padding: 1em 2%;
+    width: 46%;
 }
 
 .news-article-image {
@@ -258,6 +258,16 @@ form {
     }
 }
 
+@media screen and (min-width: 800px) {
+    .news-article {
+        /* Set width and padding to add up to 33% so that only 3 articles appear per
+        line
+         */
+        padding: 1em 2%;
+        width: 29%;
+    }
+}
+
 @media screen and (min-width: 850px) {
     /* Increase font size as screen gets wider */
     /* Before this tweakpoint - tablet design, after - PC */
@@ -290,20 +300,6 @@ form {
          */
         flex-direction: row;
     }
-
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    /*~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-    .news-article {
-        /* Set width and padding to add up to 25% so that only 4 articles appear per
-        line
-         */
-        width: 21%;
-    }
-
-    .news-article-image {
-        width: 33%;
-    }
 }
 
 @media screen and (max-width: 800px) {
@@ -334,5 +330,19 @@ form {
     /* Adjust size of image as screen gets larger */
     #screenshot {
         width: 30vw;
+    }
+
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~News Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+    .news-article {
+        /* Set width and padding to add up to 25% so that only 4 articles appear per
+        line
+         */
+        width: 21%;
+    }
+
+    .news-article-image {
+        width: 33%;
     }
 }

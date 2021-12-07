@@ -11,60 +11,40 @@ function toggleArticle(event) {
     // Select the heading of the article that was clicked
     let heading = article.children[0];
 
-    /* Script checks whether the article is expanded. If not, then it
-     multiplies current height of the article by 5 to get the final height,
-      which will be enough to show all of the text. It will then set the
-       height of the article to that, and change the value of expanded
-        accordingly.
+    /* CSS transitions don't work with percentage values (only for height,
+     for some reason they work fine for width), so I can't just use height =
+      '100%'.
      */
-    /* CSS transitions don't work with percentage values, so I can't just
-     use height = '100%'.
-     */
-    if (p.dataset.expanded === 'false') {
-        for (let i=0; i<articleFullSizes.length; i++) {
-            if (articleFullSizes[i][0] === p) {
-                // Retrieve full size of article from array.
-                img.style.width = '100%';
-                article.style.height =  maxImageHeight + heading.offsetHeight + articleFullSizes[i][1] + 'px';
-            }
-        }
-        p.dataset.expanded = 'true';
+    if (article.expanded === 'false') {
+        // Retrieve full size of article from array.
+        img.style.width = '100%';
+        article.style.height =  maxImageHeight + heading.offsetHeight + p.offsetHeight + 'px';
+        article.expanded = 'true';
     } else {
         img.style.removeProperty('width');
         img.style.removeProperty('float');
         article.style.height = totalHeight + 'px';
-        p.dataset.expanded = 'false';
+        article.expanded = 'false';
     }
 }
 
 function resetArticleSize() {
     articles = document.getElementById("articles").children;
-    articleFullSizes = [];
     totalHeight = 0;
     maxImageHeight = 0;
+    maxHeadingHeight = 0;
 
     let windowHeight = window.innerHeight;
+    console.log(windowHeight);
     for (let i=0; i<articles.length; i++) {
         let article = articles[i];
-        article.addEventListener('click', toggleArticle, false);
-
-        // Get paragraph - second child of the article
-        let p = article.children[2];
-
-        // Reset height to CSS-defined value
-        article.style.removeProperty('height');
 
         // Get image
-        let img = article.children[1];
+        var img = article.children[1];
 
         // Get heading
-        let heading = article.children[0];
-
-        console.log(i);
-        articleFullSizes[i] = [p, p.offsetHeight];
+        var heading = article.children[0];
         if (i === 0) {
-            totalHeight = (windowHeight / 5 + 0.4) + heading.offsetHeight;
-
             // Get max height of image
             img.style.transition = 'none';
             img.style.width = '100%';
@@ -72,8 +52,27 @@ function resetArticleSize() {
         }
 
         img.style.removeProperty('width');
-        // Reset transition to stylesheet-defined value
         img.style.removeProperty('transition');
+
+        if (heading.offsetHeight > maxHeadingHeight) {
+            maxHeadingHeight = heading.offsetHeight;
+        }
+    }
+
+    if (window.innerWidth > 500) {
+        // If on desktop
+        totalHeight = (windowHeight / 5) + maxHeadingHeight;
+    } else {
+        totalHeight = (windowHeight / 10) + img.offsetHeight + heading.offsetHeight;
+    }
+
+    
+    for (let i=0; i<articles.length; i++) {
+        let article = articles[i];
+        article.addEventListener('click', toggleArticle, false);
+
+        // Reset height to CSS-defined value
+        article.style.removeProperty('height');
 
         // Set article element to default starting height - to avoid using auto
         article.style.height = totalHeight + 'px';
@@ -82,7 +81,7 @@ function resetArticleSize() {
         /* Set HTML data-expanded to false (so the script knows that the article
          is not fully expanded)
          */
-        p.dataset.expanded = 'false';
+        article.expanded = 'false';
     }
 }
 
@@ -101,10 +100,10 @@ function resizeAction() {
 }
 
 let articles;
-let articleFullSizes;
 let timer = 'false';
 let totalHeight;
 let maxImageHeight;
+let maxHeadingHeight;
 
 window.addEventListener('resize', resizeAction, false);
 window.addEventListener('load', resetArticleSize, false);
