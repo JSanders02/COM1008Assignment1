@@ -77,6 +77,18 @@ small {
 }
 
 q {
+    quotes: '“' '”' '‘' '’';
+}
+
+q::before {
+    content: open-quote;
+}
+
+q::after {
+    content: close-quote;
+}
+
+q.fancy-quote {
     font-style: italic;
 }
 
@@ -216,6 +228,7 @@ figcaption {
 
     max-width: 100%;
 
+    text-align: center;
     font-size: 1em;
 }
 
@@ -338,6 +351,7 @@ textarea {
 .news-article-image {
     width: 50%;
     margin: 0 auto;
+    padding-bottom: .5em;
     transition: .5s ease;
 }
 
