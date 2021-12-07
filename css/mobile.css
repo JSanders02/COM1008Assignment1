@@ -88,7 +88,8 @@ q::after {
     content: close-quote;
 }
 
-q.fancy-quote {
+q.fancy-quote,
+em {
     font-style: italic;
 }
 
