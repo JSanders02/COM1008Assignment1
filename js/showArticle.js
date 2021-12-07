@@ -1,6 +1,6 @@
 function toggleArticle(event) {
     // Select the paragraph in the news article that was clicked
-    let article = event.currentTarget.children[2];
+    let p = event.currentTarget.children[2];
 
     /* Script checks whether the article is expanded. If not, then it
      multiplies current height of the article by 5 to get the final height,
@@ -11,17 +11,20 @@ function toggleArticle(event) {
     /* CSS transitions don't work with percentage values, so I can't just
      use height = '100%'.
      */
-    if (article.dataset.expanded === 'false') {
+    if (p.dataset.expanded === 'false') {
         for (let i=0; i<articleFullSizes.length; i++) {
-            if (articleFullSizes[i][0] === article) {
-                article.style.height = (articleFullSizes[i][1]) + 'px';
+            if (articleFullSizes[i][0] === p) {
+                p.style.height = (articleFullSizes[i][1]) + 'px';
             }
         }
-        article.dataset.expanded = 'true';
+        p.dataset.expanded = 'true';
     } else {
-        let windowHeight = window.innerHeight;
-        article.style.height = (windowHeight / 5 + 0.4) + 'px';
-        article.dataset.expanded = 'false';
+        /* Get heading element (previous sibling of the previous sibling
+             (the image) of the paragraph).
+             */
+        let heading = p.previousElementSibling.previousElementSibling;
+        p.style.height = (totalHeight - heading.offsetHeight) + 'px';
+        p.dataset.expanded = 'false';
     }
 }
 
@@ -30,21 +33,33 @@ function resetArticleSize() {
     for (let i=0; i<articles.length; i++) {
         articles[i].addEventListener('click', toggleArticle, false);
 
-        let paragraph = articles[i].children[2];
+        // Get paragraph - second child of the article
+        let p = articles[i].children[2];
+
+        let heading = p.previousElementSibling.previousElementSibling;
 
         /* Set default height of paragraph element */
-        paragraph.style.height = '100%';
+        p.style.height = '100%';
         /* Add a little extra to the max height, to avoid final line being
          cut off
          */
-        articleFullSizes[i] = [paragraph, paragraph.offsetHeight + 32];
-        paragraph.style.height = (windowHeight / 5 + 0.4) + 'px';
+        articleFullSizes[i] = [p, p.offsetHeight + 32];
+        if (i === 0) {
+            // Set first article to a default height
+            p.style.height = (windowHeight / 5 + 0.4) + 'px';
+            totalHeight = (windowHeight / 5 + 0.4) + heading.offsetHeight;
+        } else {
+            /* Use total height and subtract height of heading, so that the
+             bottom of every article lines up, creating a nicer look.
+             */
+            p.style.height = (totalHeight - heading.offsetHeight) + 'px';
+        }
 
         // https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
         /* Set HTML data-expanded to false (so the script knows that the article
          is not fully expanded)
          */
-        paragraph.dataset.expanded = 'false';
+        p.dataset.expanded = 'false';
     }
 }
 
@@ -65,6 +80,7 @@ function resizeAction() {
 let articles = document.getElementById("articles").children
 let articleFullSizes = [];
 let timer = 'false'
+let totalHeight = 0;
 
 resetArticleSize();
 window.addEventListener('resize', resizeAction, false);
