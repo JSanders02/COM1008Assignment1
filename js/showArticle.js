@@ -56,7 +56,7 @@ function resetArticleSize() {
         var img = article.children[1];
 
         // Get heading
-        var heading = article.children[0];
+        let heading = article.children[0];
         if (i === 0) {
             // Get max height of image
             img.style.transition = 'none';
@@ -86,13 +86,18 @@ function resetArticleSize() {
     
     for (let i=0; i<articles.length; i++) {
         let article = articles[i];
+        let heading = article.children[0];
         article.addEventListener('click', toggleArticle, false);
 
         // Reset height to CSS-defined value
         article.style.removeProperty('height');
 
         // Set article element to default starting height - to avoid using auto
-        article.style.height = totalHeight + 'px';
+        if (window.innerWidth > 500) {
+            article.style.height = totalHeight + maxHeadingHeight + 'px';
+        } else {
+            article.style.height = totalHeight + heading.offsetHeight + 'px';
+        }
 
         // https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
         /* Set HTML data-expanded to false (so the script knows that the article
