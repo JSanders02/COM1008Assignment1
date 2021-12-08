@@ -6,23 +6,27 @@ function playGame(images) {
     let imageNames = [['dog1', 'dog2'], ['cat1', 'cat2'], ['duck1', 'duck2'], ['penguin1', 'penguin2']];
     let imageHeight = (canvas.height - 30) / 3;
 
-    console.log(canvas.height);
+    let xUpper = canvas.width - 15 - imageHeight;
 
-    let chosenType = imageNames[randomNumber(0, imageNames.length)];
-    let toDraw = chosenType[randomNumber(0, chosenType.length)];
+    for (let i=0; i<3; i++) {
+        let randType = randomNumber(0, imageNames.length)
+        let chosenType = imageNames[randType];
+        let randImg = randomNumber(0, chosenType.length)
 
-    console.log(images);
-    for (let i=0; i<images.length; i++) {
-        let selected = images[i];
-        console.log(selected.src);
-        if (selected.src.endsWith(toDraw + '.jpg')) {
-            var chosenImage = selected;
-            console.log(chosenImage);
-            break;
+        let toDraw = chosenType[randImg];
+        chosenType.splice(randImg, 1);
+
+        for (let j=0; j<images.length; j++) {
+            let selected = images[j];
+            if (selected.src.endsWith(toDraw + '.jpg')) {
+                var chosenImage = selected;
+                console.log(chosenImage);
+                break;
+            }
         }
-    }
 
-    context.drawImage(chosenImage, 15, 15, imageHeight, imageHeight);
+        context.drawImage(chosenImage, randomNumber(15, xUpper), 15 + imageHeight*i, imageHeight, imageHeight);
+    }
 }
 
 function loadImages(files, callback) {
