@@ -49,7 +49,25 @@
             You must then click on the image that you think is of the
             objective.</p>
         <p>That's it. Enjoy the game!</p>
-        <canvas id="game-canvas" width="100%" height="80%"></canvas>
+        <div id="canvas-wrapper">
+            <canvas id="game-canvas" width="100%" height="80%"></canvas>
+            <button id="play-game" class="game-button absolute-centre">Press here to
+                start!</button>
+            <div id="game-name" class="absolute-centre">
+                <label for="game-name-input">Your Name:</label>
+                <input id="game-name-input" type="text" name="Name"
+                       placeholder="Enter your name...">
+                <button id="submit-name" class="game-button">
+                    Confirm Name</button>
+            </div>
+        </div>
+
+        <small>All dog images were provided with permission for use by
+            Nathalie van Pelt. All cat images were provided with
+            permission for use by Jack Sanders. All duck & penguin
+            images are from <a href="https://www.pexels.com/" target="_blank">
+                Pexels Images</a>, which means they are all licensed to be used
+            and shared legally.</small>
     </main>
 
     <footer>
@@ -58,5 +76,6 @@
 
     <script src="js/showNavButton.js"></script>
     <script src="js/canvasSize.js"></script>
+    <script src="js/playGame.js"></script>
 </body>
 </html>

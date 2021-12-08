@@ -14,7 +14,7 @@ function resetCanvasSize() {
     for (let i=0; i<notCanvas.length; i++) {
        elementsHeight += notCanvas[i].offsetHeight;
     }
-    console.log(windowHeight);
+
     if ((windowHeight - elementsHeight) * 0.9 < 450) {
         /* Minimum height, any smaller than this and the game would be
          uncomfortable to play
