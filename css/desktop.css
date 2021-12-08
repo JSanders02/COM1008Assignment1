@@ -258,6 +258,16 @@ form {
     }
 }
 
+@media screen and (max-width: 800px) {
+    nav a p {
+        /* Increase size of text and bullet points, to be more visible */
+        background: url(/img/bulletPoint.png) left no-repeat;
+        background-size: .55rem;
+
+        font-size: 3em;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .news-article {
         /* Set width and padding to add up to 33% so that only 3 articles appear per
@@ -280,6 +290,14 @@ form {
         font-size: 2em;
     }
 
+    .desktop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~Contact Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     input {
@@ -300,19 +318,9 @@ form {
          */
         flex-direction: row;
     }
-}
 
-@media screen and (max-width: 800px) {
-    nav a p {
-        /* Increase size of text and bullet points, to be more visible */
-        background: url(/img/bulletPoint.png) left no-repeat;
-        background-size: .55rem;
-
-        font-size: 3em;
-    }
-}
-
-@media screen and (min-width: 850px) {
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~Founder Page~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /* Add space next to founder descriptions, so they don't go underneath the
     image of the previous founder, to match the design specified in my planning
     document
