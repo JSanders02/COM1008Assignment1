@@ -41,8 +41,11 @@ function toggleNavFocus() {
      nav */
     let listItems = nav.children[2].children;
     for (let i=0; i<listItems.length; i++) {
-        /* Select only child (anchor element) of li element */
+        // Select only child (anchor element) of li element
         let anchor = listItems[i].children[0];
+        /* Change tabIndex attribute of anchor element to either 0 (can be
+         selected with tab) or -1 (cannot be selected with tab).
+         */
         if (anchor.tabIndex === 0) {
             anchor.tabIndex = -1;
         } else {
