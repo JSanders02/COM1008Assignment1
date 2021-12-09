@@ -227,7 +227,7 @@ main p {
 }
 
 figure img {
-    max-width: 100%;
+    width: 100%;
 }
 
 figcaption {
@@ -240,10 +240,11 @@ figcaption {
 }
 
 #screenshot {
-    margin: .25em 2% .25em 0;
-    border: 1px solid black;
+    margin: .25em 2% .75em 0;
     width: 90vw; /* Take up 90% of viewport width (ful width of main) */
-    height: 45vw;
+    height: max-content; /* Use vw here as well to ensurethe figure is a square */
+
+    text-align: center;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

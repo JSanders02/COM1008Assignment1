@@ -186,9 +186,9 @@ main p {
     float: left; /* Let main text wrap around the screenshot */
     clear: left;
 
-    margin: .25em 2% .25em 0;
-    width: 40vw;
-    height: 20vw;
+    margin: .25em 2% .75em 0;
+    width: 30vw;
+    height: 30vw;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -334,7 +334,8 @@ form {
 @media screen and (min-width: 1300px) {
     /* Adjust size of image as screen gets larger */
     #screenshot {
-        width: 30vw;
+        width: 20vw;
+        height: 20vw;
     }
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
