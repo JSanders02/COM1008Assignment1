@@ -107,7 +107,7 @@ nav a p {
     character would result in it also showing up on the mobile version of the
     site, which is undesirable
      */
-    background: url(/img/bulletPoint.png) left no-repeat;
+    background: url(/img/nav/bulletPoint.png) left no-repeat;
     background-size: .4rem;
 
     font-family: Georgia, serif;
@@ -234,7 +234,6 @@ form {
     small screen sizes
      */
     nav a p {
-        background: url(/img/bulletPoint.png) left no-repeat;
         background-size: .55rem;
 
         font-size: 3em;
@@ -244,7 +243,6 @@ form {
 @media screen and (min-height: 600px) {
     /* Increase size of text and bullet points, to be more visible */
     nav a p {
-        background: url(/img/bulletPoint.png) left no-repeat;
         background-size: .7rem;
 
         font-size: 5em;
@@ -261,7 +259,6 @@ form {
 @media screen and (max-width: 800px) {
     nav a p {
         /* Increase size of text and bullet points, to be more visible */
-        background: url(/img/bulletPoint.png) left no-repeat;
         background-size: .55rem;
 
         font-size: 3em;

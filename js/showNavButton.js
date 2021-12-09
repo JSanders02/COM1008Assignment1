@@ -23,14 +23,14 @@ function changeNavVisibleDesktop() {
         nav.dataset.expanded = 'true';
         setTimeout(function (){
             showButtonDesktop.innerHTML = '<img' +
-                ' src="img/menuOpen.png"><p>Close</p>';
+                ' src="img/nav/menuOpen.png"><p>Close</p>';
             showButtonDesktop.style.opacity = '100';
         }, 250)
     } else {
         nav.dataset.expanded = 'false';
         setTimeout(function (){
             showButtonDesktop.innerHTML = '<img' +
-                ' src="img/menuClosed.png"><p>Menu</p>';
+                ' src="img/nav/menuClosed.png"><p>Menu</p>';
             showButtonDesktop.style.opacity = '100';
         }, 250)
     }
