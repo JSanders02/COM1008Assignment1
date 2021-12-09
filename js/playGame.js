@@ -66,10 +66,6 @@ Circle.prototype.draw = function () {
     ctx.stroke();
 }
 
-Circle.prototype.clear = function () {
-    GameGlobals.ctx.clearRect(this.x, this.y, this.size, this.size);
-}
-
 Circle.prototype.getType = function () {
     return 'circle';
 }
@@ -116,10 +112,6 @@ Triangle.prototype.draw = function () {
     ctx.stroke();
 }
 
-Triangle.prototype.clear = function () {
-    GameGlobals.ctx.clearRect(this.x, this.y, this.height, this.height);
-}
-
 Triangle.prototype.getType = function () {
     return 'triangle';
 }
@@ -143,10 +135,6 @@ function GameImage(img, x, y, sideLength) {
 
 GameImage.prototype.draw = function () {
     GameGlobals.ctx.drawImage(this.img, this.x, this.y, this.sideLength, this.sideLength);
-}
-
-GameImage.prototype.clear = function () {
-    GameGlobals.ctx.clearRect(this.x, this.y, this.sideLength, this.sideLength);
 }
 
 GameImage.prototype.getType = function () {
@@ -260,11 +248,20 @@ function playGame() {
     let imageNames = [['dog1', 'dog2'], ['cat1', 'cat2'], ['duck1', 'duck2'],
         ['penguin1', 'penguin2'], [new Triangle()], [new Circle()]];
     let typesChosen = new Array(3);
-    let imageHeight = (GameGlobals.canvas.height - 80) / 3;
 
-    let xUpper = GameGlobals.canvas.width - 15 - imageHeight;
+    let previousCoords = [];
 
     for (let i=0; i<3; i++) {
+        // Adjust imageHeight here, in case user resizes canvas between rounds.
+        let imageHeight;
+        if (GameGlobals.canvas.height < GameGlobals.canvas.width) {
+            imageHeight = (GameGlobals.canvas.height - 80) / 3;
+        } else {
+            imageHeight = (GameGlobals.canvas.width) / 3;
+        }
+        let xUpper = GameGlobals.canvas.width - 15 - imageHeight;
+        let yUpper = GameGlobals.canvas.height - 15 - imageHeight;
+
         let randType = randomNumber(0, imageNames.length)
         while (typesChosen.includes(randType)) {
             // Make sure we get a unique image type
@@ -279,6 +276,28 @@ function playGame() {
 
         let toDraw = chosenType[randImg];
 
+        let x = 0;
+
+        let y = 0;
+
+        let overlap = true;
+
+        while (overlap) {
+            overlap = false;
+            x = randomNumber(15, xUpper);
+            y = randomNumber(65, yUpper);
+
+            for (let i=0; i<previousCoords.length; i++) {
+                if (Math.abs(x - previousCoords[i][0]) <= imageHeight && Math.abs(y - previousCoords[i][1]) <= imageHeight)  {
+                    overlap = true;
+                    break;
+                }
+            }
+            console.log(overlap);
+        }
+
+        previousCoords.push([x, y]);
+
         /* If toDraw is a string, that means it is referring to an image,
          and so we treat it as such. If not, then just add the object
           directly to the array.
@@ -287,14 +306,13 @@ function playGame() {
             for (let j = 0; j < GameGlobals.images.length; j++) {
                 let selected = GameGlobals.images[j];
                 if (selected.src.endsWith(toDraw + '.jpg')) {
-                    var chosenImage = selected;
-                    GameGlobals.drawObjects[i] = new GameImage(chosenImage, randomNumber(15, xUpper), 65 + imageHeight*i, imageHeight)
+                    GameGlobals.drawObjects[i] = new GameImage(selected, x, y, imageHeight)
                     break;
                 }
             }
         } else {
             toDraw.setHeight(imageHeight);
-            toDraw.setCoords(randomNumber(15, xUpper), 65 + imageHeight*i);
+            toDraw.setCoords(x, y);
             GameGlobals.drawObjects[i] = toDraw;
         }
         GameGlobals.drawObjects[i].draw();
