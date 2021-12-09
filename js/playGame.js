@@ -18,7 +18,8 @@ let GameGlobals = {
     /* Names of all images (or objects in the case of non-images) stored in
      an array, meaning I can easily add more images if I want.
      */
-    imageNames: [['dog1', 'dog2', 'dog3', 'dog4', 'dog5'], ['cat1', 'cat2'], ['duck1', 'duck2'],
+    imageNames: [['dog1', 'dog2', 'dog3', 'dog4', 'dog5'],
+        ['cat1', 'cat2', 'cat3', 'cat4', 'cat5'], ['duck1', 'duck2'],
         ['penguin1', 'penguin2'], [new Triangle()], [new Circle()]],
 
     setFont: function (font) {
