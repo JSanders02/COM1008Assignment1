@@ -1,3 +1,149 @@
+/* Use a super class for game object classes, to avoid having to rewrite
+ methods that function identically.
+ */
+class GameObject {
+    constructor(x, y, height) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.type = 'none';
+    }
+
+    getX() {
+        return this.x;
+    }
+
+    getY() {
+        return this.y;
+    }
+
+    getType() {
+        return this.type;
+    }
+
+    setCoords(x, y=null) {
+        /* Use one function for both coordinates, rather than needing one for x
+         and one for y.
+         */
+        if (x !== null) {
+            this.x = x;
+        }
+        if (y !== null) {
+            this.y = y;
+        }
+    }
+
+    setHeight(height) {
+        this.height = height;
+    }
+
+    checkMousePos(mX, mY) {
+        /* Check if mouse is in a square that bounds the triangle - not as ideal
+         as checking if it is in the triangle, but a lot easier.
+         */
+        if (mX > this.x && mX < this.x + this.height) {
+            if (mY > this.y && mY < this.y + this.height) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+/* This object is used to create a circle, as that is one of the objects in
+ the game.
+ */
+class Circle extends GameObject {
+    constructor(x, y, height) {
+        super(x, y, height); // Invoke super class constructor
+        /* this.x is needed as it gets used in canvasSize.js - when the canvas
+     is resized, all objects on there are repositioned using their x attributes.
+     */
+        this.centreX = x + height / 2;
+        this.centreY = y + height / 2;
+        this.radius = height * 0.45;
+
+        this.type = 'circle';
+    }
+
+    setCoords(x, y=null) {
+        /* Use one function for both coordinates, rather than needing one for x
+         and one for y.
+         */
+        if (x !== null) {
+            this.x = x;
+            this.centreX = x + this.height / 2;
+        }
+        if (y !== null) {
+            this.y = y;
+            this.centreY = y + this.height / 2;
+        }
+    }
+
+    setHeight(height) {
+        super.setHeight(height);
+        this.radius = height * 0.45;
+    }
+
+    draw() {
+        let ctx = GameGlobals.ctx;
+        ctx.beginPath();
+        ctx.arc(this.centreX, this.centreY, this.radius, 0, Math.PI*2);
+        ctx.stroke();
+    }
+
+    checkMousePos(mX, mY) {
+        // Checks the distance from the mouse to the centre of the circle
+        if (Math.sqrt((this.centreX - mX)**2+(this.centreY - mY)**2) <= this.radius) {
+            return true;
+        }
+        return false;
+    }
+}
+
+class Triangle extends GameObject {
+    constructor(x, y, height) {
+        super(x, y, height);
+        this.type = 'triangle';
+    }
+
+    draw() {
+        let ctx = GameGlobals.ctx;
+        let triangleX = this.x + this.height * 0.05;
+        let triangleY = this.height + (this.y - this.height * 0.05);
+        let triangleHeight = this.height * 0.9;
+        ctx.beginPath();
+        ctx.moveTo(triangleX, triangleY);
+        ctx.lineTo(triangleX + triangleHeight, triangleY);
+        ctx.lineTo(triangleX + triangleHeight / 2, triangleY - triangleHeight)
+        ctx.lineTo(triangleX, triangleY);
+        ctx.stroke();
+    }
+}
+
+// Define object for images, so they can easily be manipulated
+class GameImage extends GameObject {
+    constructor(img, x, y, height) {
+        super(x, y + 5, height - 10);
+        this.img = img;
+
+        // Set image type
+        // Split at / (turn img/game/dog.jpg into ['img', 'game', 'dog1.jpg']
+        let imgSrc = this.img.src.split('/');
+
+        // Select last element (filename) from split filepath and remove extension.
+        imgSrc = imgSrc[imgSrc.length - 1].split('.')[0];
+
+        // Remove last character (the number) from the string
+        imgSrc = imgSrc.substring(0, imgSrc.length - 1);
+        this.type = imgSrc;
+    }
+
+    draw() {
+        GameGlobals.ctx.drawImage(this.img, this.x, this.y, this.height, this.height);
+    }
+}
+
 // Contain all global variables used by this script into one object literal.
 /* Used an object literal as only one instance of this will ever need to be
  created, and so it makes more sense than creating a whole class just for
@@ -39,193 +185,6 @@ let GameGlobals = {
 
         // No need to reset drawObjects - that is reset in playRound.
     },
-}
-
-/* This object is used to create a circle, as that is one of the objects in
- the game.
- */
-function Circle(x, y, size) {
-    /* this.x is needed as it gets used in canvasSize.js - when the canvas
-     is resized, all objects on there are repositioned using their x attributes.
-     */
-    this.x = x;
-    this.y = y;
-    this.centreX = x + size / 2;
-    this.centreY = y + size / 2;
-    this.size = size;
-    this.radius = size * 0.45;
-
-    this.type = 'circle';
-}
-
-Circle.prototype.setCoords = function(x, y=null) {
-    /* Use one function for both coordinates, rather than needing one for x
-     and one for y.
-     */
-    if (x !== null) {
-        /* As radius is 45% of the 'bounding box', divide by 9 to get 5%,
-         and multiply by 10 to get 50%, to put the coordinates in the centre
-          of the box.
-         */
-        this.x = x;
-        this.centreX = x + this.size / 2;
-    }
-    if (y !== null) {
-        this.y = y;
-        this.centreY = y + this.size / 2;
-    }
-}
-
-Circle.prototype.setHeight = function (height) {
-    this.size = height;
-    this.radius = height * 0.45;
-}
-
-Circle.prototype.draw = function () {
-    let ctx = GameGlobals.ctx;
-    ctx.beginPath();
-    ctx.arc(this.centreX, this.centreY, this.radius, 0, Math.PI*2);
-    ctx.stroke();
-}
-
-Circle.prototype.getX = function () {
-    return this.x;
-}
-
-Circle.prototype.getY = function () {
-    return this.y;
-}
-
-Circle.prototype.getType = function () {
-    return this.type;
-}
-
-Circle.prototype.checkMousePos = function (mX, mY) {
-    // Checks the distance from the mouse to the centre of the circle
-    if (Math.sqrt((this.centreX - mX)**2+(this.centreY - mY)**2) <= this.radius) {
-        return true;
-    }
-    return false;
-}
-
-function Triangle(x, y, height) {
-    this.x = x;
-    this.y = y;
-    this.height = height;
-
-    this.type = 'triangle';
-}
-
-Triangle.prototype.setCoords = function(x, y=null) {
-    /* Use one function for both coordinates, rather than needing one for x
-     and one for y.
-     */
-    if (x !== null) {
-        this.x = x;
-    }
-    if (y !== null) {
-        this.y = y;
-    }
-}
-
-Triangle.prototype.setHeight = function (height) {
-    this.height = height;
-}
-
-Triangle.prototype.draw = function () {
-    let ctx = GameGlobals.ctx;
-    let triangleX = this.x + this.height * 0.05;
-    let triangleY = this.height + (this.y - this.height * 0.05);
-    let triangleHeight = this.height * 0.9;
-    ctx.beginPath();
-    ctx.moveTo(triangleX, triangleY);
-    ctx.lineTo(triangleX + triangleHeight, triangleY);
-    ctx.lineTo(triangleX + triangleHeight / 2, triangleY - triangleHeight)
-    ctx.lineTo(triangleX, triangleY);
-    ctx.stroke();
-}
-
-Triangle.prototype.getX = function () {
-    return this.x;
-}
-
-Triangle.prototype.getY = function () {
-    return this.y;
-}
-
-Triangle.prototype.getType = function () {
-    return this.type;
-}
-
-Triangle.prototype.checkMousePos = function (mX, mY) {
-    /* Check if mouse is in a square that bounds the triangle - not as ideal
-     as checking if it is in the triangle, but a lot easier.
-     */
-    if (mX > this.x && mX < this.x + this.height) {
-        if (mY > this.y && mY < this.y + this.height) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Define object for images, so they can easily be manipulated
-function GameImage(img, x, y, sideLength) {
-    this.img = img;
-    this.x = x;
-    this.y = y + 5;
-    // Images are always square, so no need for two different side lengths.
-    this.sideLength = sideLength - 10;
-}
-
-GameImage.prototype.draw = function () {
-    GameGlobals.ctx.drawImage(this.img, this.x, this.y, this.sideLength, this.sideLength);
-}
-
-GameImage.prototype.getX = function () {
-    return this.x;
-}
-
-GameImage.prototype.getY = function () {
-    return this.y;
-}
-
-GameImage.prototype.getType = function () {
-    // Split at / (turn path/to/img.jpg into ['path', 'to', 'img.jpg']
-    let imgSrc = this.img.src.split('/');
-
-    // Select last element (filename) from split filepath and remove extension.
-    imgSrc = imgSrc[imgSrc.length - 1].split('.')[0];
-
-    // Remove last character (the number) from the string
-    imgSrc = imgSrc.substring(0, imgSrc.length - 1);
-    return imgSrc;
-}
-
-GameImage.prototype.setCoords = function(x, y=null) {
-    /* Use one function for both coordinates, rather than needing one for x
-     and one for y.
-     */
-    if (x !== null) {
-        this.x = x;
-    }
-    if (y !== null) {
-        this.y = y;
-    }
-}
-
-GameImage.prototype.setHeight = function (height) {
-    this.sideLength = height;
-}
-
-GameImage.prototype.checkMousePos = function (mX, mY) {
-    // Checks if mouse is over the image
-    if (mX > this.x && mX < this.x + this.sideLength) {
-        if (mY > this.y && mY < this.y + this.sideLength) {
-            return true;
-        }
-    }
-    return false;
 }
 
 // Simple function to generate a random integer between two bounds
@@ -502,7 +461,6 @@ function getName() {
 
     // Get value of second child (text field) of GameGlobals.nameInput div
     GameGlobals.name = GameGlobals.nameInput.children[1].value;
-    console.log(GameGlobals.name);
     GameGlobals.nameInput.style.removeProperty('display') // back to none - in CSS
 
     initialiseImageLoad();
