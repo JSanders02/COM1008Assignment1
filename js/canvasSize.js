@@ -39,18 +39,32 @@ function resetCanvasSize() {
     // Take 90% of screen width to match other elements
     canvas.width = windowWidth * 0.9;
 
+    let imageHeight;
+    /* Different imageHeight depending on whether the canvas is wider
+     than it is tall - using the same height no matter what will result
+      in images being impossible to place without overlapping, resulting
+       in the webpage freezing as the loop runs indefinitely.
+     */
+    if (canvas.height < canvas.width) {
+        // - 80 to make room for any text that is displayed
+        imageHeight = (canvas.height - 80) / 3;
+    } else {
+        imageHeight = (canvas.width) / 3;
+    }
+
     // If loadedItems contains only objects,adjust their position accordingly
     if (!loadedItems.includes(undefined)) {
         // Calculate scale in each axis, and multiply coordinates by the scales
         let xScale = canvas.width / originalWidth;
         let yScale = canvas.height / originalHeight;
         for (let i=0; i<loadedItems.length; i++) {
-            if (canvas.height !== originalHeight) {
-                let imageHeight = (canvas.height - 80) / 3
-                loadedItems[i].setHeight(imageHeight)
-            }
-            loadedItems[i].setCoords(loadedItems[i].getX() * xScale, loadedItems[i].getY() * yScale);
-            loadedItems[i].draw();
+            let current = loadedItems[i];
+            let height = current.getHeight();
+            let newCentreX = (current.getX() + height / 2) * xScale;
+            let newCentreY = (current.getY() + height / 2) * yScale;
+            current.setCoords(newCentreX - height / 2, newCentreY - height / 2);
+            current.setHeight(imageHeight);
+            current.draw();
         }
     }
 

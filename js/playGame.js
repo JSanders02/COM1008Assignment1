@@ -21,6 +21,10 @@ class GameObject {
         return this.type;
     }
 
+    getHeight() {
+        return this.height;
+    }
+
     setCoords(x, y=null) {
         /* Use one function for both coordinates, rather than needing one for x
          and one for y.
