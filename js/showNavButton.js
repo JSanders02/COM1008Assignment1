@@ -1,45 +1,54 @@
-function changeNavVisibleMobile() {
+function changeNavVisible() {
+    // 'Parent' function, used to control which change nav function is called
     if (nav.dataset.expanded === 'false') {
         nav.dataset.expanded = 'true';
     } else {
         nav.dataset.expanded = 'false';
     }
+
+    if (window.innerWidth > 500) {
+        changeNavVisibleDesktop();
+    } else {
+        changeNavVisibleMobile();
+    }
+}
+
+function changeNavVisibleMobile() {
+    
     nav.classList.toggle('nav-shown'); // Expands nav menu
     toggleNavFocus() // Toggle whether nav items can be selected by tab
 
     // Changes button text
-    if (showButtonMobile.innerHTML === "Menu") {
-        showButtonMobile.innerHTML = "Close";
+    if (showButton.innerText === "Menu") {
+        showButton.innerText = "Close";
     } else {
-        showButtonMobile.innerHTML = "Menu";
+        showButton.innerText = "Menu";
     }
 }
 
 function changeNavVisibleDesktop() {
     nav.classList.toggle('nav-shown'); // Expands nav menu
     toggleNavFocus() // Toggle whether nav items can be selected by tab
-    showButtonDesktop.style.opacity = '0';
-    if (nav.dataset.expanded === 'false') {
-        nav.dataset.expanded = 'true';
+    showButton.style.opacity = '0';
+    if (nav.dataset.expanded === 'true') {
         setTimeout(function (){
-            showButtonDesktop.innerHTML = '<img' +
+            showButton.innerHTML = '<img' +
                 ' src="img/nav/menuOpen.png"><p>Close</p>';
-            showButtonDesktop.style.opacity = '100';
+            showButton.style.opacity = '100';
         }, 250)
     } else {
-        nav.dataset.expanded = 'false';
         setTimeout(function (){
-            showButtonDesktop.innerHTML = '<img' +
+            showButton.innerHTML = '<img' +
                 ' src="img/nav/menuClosed.png"><p>Menu</p>';
-            showButtonDesktop.style.opacity = '100';
+            showButton.style.opacity = '100';
         }, 250)
     }
 }
 
 function toggleNavFocus() {
-    /* Select list of children (li elements) of third child (ul element) of
+    /* Select list of children (li elements) of second child (ul element) of
      nav */
-    let listItems = nav.children[2].children;
+    let listItems = nav.children[1].children;
     for (let i=0; i<listItems.length; i++) {
         // Select only child (anchor element) of li element
         let anchor = listItems[i].children[0];
@@ -54,10 +63,8 @@ function toggleNavFocus() {
     }
 }
 
-let showButtonMobile = document.getElementById('show-nav-mobile');
-let showButtonDesktop = document.getElementById('show-nav-desktop');
+let showButton = document.getElementById('show-nav');
 let nav = document.getElementsByTagName("nav")[0];
 nav.dataset.expanded = 'false';
-showButtonMobile.addEventListener('click', changeNavVisibleMobile, false);
-showButtonDesktop.addEventListener('click', changeNavVisibleDesktop, false);
+showButton.addEventListener('click', changeNavVisible, false);
 toggleNavFocus();

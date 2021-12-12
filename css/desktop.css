@@ -120,7 +120,7 @@ nav a p {
     height: calc(100% - 2em);
 }
 
-#show-nav-desktop {
+#show-nav {
     display: flex; /* Keep image and button text together */
     flex-direction: row;
 
@@ -137,25 +137,26 @@ nav a p {
     text-decoration: none;
 }
 
-#show-nav-desktop:hover {
+#show-nav:hover {
     /* Change cursor, as a visual indicator that the user can click the
     button
      */
     cursor: pointer;
 }
 
-#show-nav-desktop img {
+#show-nav img {
+    display: flex;
     height: 2em;
 }
 
-#show-nav-desktop p {
+#show-nav p {
     margin: auto 0;
     padding-left: .5em;
 
     color: var(--nav-text-colour);
 }
 
-#show-nav-desktop-bg {
+#show-nav-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -164,10 +165,6 @@ nav a p {
     height: 2em;
 
     background-color: rgba(105, 105, 105, 0.9);
-}
-
-#show-nav-mobile {
-    display: none;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
