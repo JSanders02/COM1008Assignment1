@@ -127,14 +127,11 @@ header h1 {
 }
 
 #logo {
-    height: 100%;
+    height: 4em;
+    margin: .5em 0; /* Vertically centre logo */
     padding: 0 2% 0 5%;
 }
 
-#logo img {
-    margin: 10% 0; /* Vertically centre logo */
-    height: 80%;
-}
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~Navigation~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

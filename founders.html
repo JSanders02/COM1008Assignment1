@@ -13,13 +13,13 @@
 
 <body>
     <header>
-        <figure id="logo">
-            <img src="img/logo.svg" alt="Our Logo">
-        </figure>
+        <img id="logo" src="img/logo.svg" alt="Our Logo">
         <h1>Lambton Entertainment</h1>
     </header>
 
     <nav>
+        <!-- Div used to show background of menu button - on desktop, expands
+         to full width of the screen and has a grey background colour -->
         <div id="show-nav-bg">
             <button name="showNav" id="show-nav">
                 <img src="img/nav/menuClosed.png">
@@ -42,6 +42,10 @@
             Sanders) are entirely fictitious, and their images were created
             using <a href="https://www.artbreeder.com/landing_page/"
                      target="_blank">artbreeder</a></p>
+
+        <!-- One div for each founder, to control flow of elements (flex
+        objects, with their directions set to column or row, depending on
+        device) -->
         <div id="founder-jack">
             <figure class="founder-image right-border">
                 <img src="img/founders/jack-sanders.jpg"

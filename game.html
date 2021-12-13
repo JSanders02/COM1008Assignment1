@@ -13,13 +13,13 @@
 
 <body>
     <header>
-        <figure id="logo">
-            <img src="img/logo.svg" alt="Our Logo">
-        </figure>
+        <img id="logo" src="img/logo.svg" alt="Our Logo">
         <h1>Lambton Entertainment</h1>
     </header>
 
     <nav>
+        <!-- Div used to show background of menu button - on desktop, expands
+         to full width of the screen and has a grey background colour -->
         <div id="show-nav-bg">
             <button name="showNav" id="show-nav">
                 <img src="img/nav/menuClosed.png">
@@ -40,6 +40,7 @@
         <h2>Game</h2>
         <h3>How to Play:</h3>
         <p>1) Three images will appear on the screen below.</p>
+
         <!-- Two different instructions here - one for desktop, one for
            mobile. The difference being tap/click -->
         <p class="mobile">2) You will be told which object/animal to tap on. You
@@ -48,6 +49,10 @@
             You must then click on the image that you think is of the
             objective.</p>
         <p>That's it. Enjoy the game!</p>
+
+        <!-- Canvas wrapper is used to keep all canvas-related elements
+        together, and allow for the buttons and form to be positioned exactly
+         in the middle of the canvas -->
         <div id="canvas-wrapper">
             <canvas id="game-canvas" width="100%" height="80%"></canvas>
             <button id="game-button" class="game-button absolute-centre">Press

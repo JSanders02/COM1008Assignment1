@@ -13,13 +13,13 @@
 
 <body>
     <header>
-        <figure id="logo">
-            <img src="img/logo.svg" alt="Our Logo">
-        </figure>
+        <img id="logo" src="img/logo.svg" alt="Our Logo">
         <h1>Lambton Entertainment</h1>
     </header>
 
     <nav>
+        <!-- Div used to show background of menu button - on desktop, expands
+         to full width of the screen and has a grey background colour -->
         <div id="show-nav-bg">
             <button name="showNav" id="show-nav">
                 <img src="img/nav/menuClosed.png">
@@ -41,7 +41,13 @@
         <div id="contact-us">
             <form name="contact-form" enctype="text/plain"
                   action="mailto: jsanders4@sheffield.ac.uk" method="POST">
+                <!-- Divs used here for control of flex item positioning, and
+                 grouping inputs together with their labels -->
                 <div id="name-and-email">
+                    <!-- name-email-input class of div needed for some
+                    styling in desktop.css, but also to ensure that the
+                    labels remain on top of the forms when #name-and-email's
+                    flex-direction attribute is set to 'row' -->
                     <div class="name-email-input">
                         <label for="input-name">Your Name:</label>
                         <input id="input-name" type="text" name="Name"
@@ -60,9 +66,17 @@
                 <input type="reset">
             </form>
             <div id="company-info">
-                <p>Lambton Entertainment<br>Penshaw Monument<br>Chester
-                    Road<br>Penshaw<br>DH4 7NJ</p>
-                <p>Call: 01234 567 890<br>Email: info@lambtonentertainment.co.uk</p>
+                <p>
+                    Lambton Entertainment<br>
+                    Penshaw Monument<br>
+                    Chester Road<br>
+                    Penshaw<br>
+                    DH4 7NJ
+                </p>
+                <p>
+                    Call: 01234 567 890<br>
+                    Email: info@lambtonentertainment.co.uk
+                </p>
                 <small>Lambton Entertainment Ltd is a company
                     registered in England and Wales with Company Number 1234567.
                     VAT No.123 4567 89</small>
