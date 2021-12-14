@@ -197,9 +197,13 @@ nav a p {
     height: 3em;
 
     background-color: var(--nav-background-colour);
+    color: var(--nav-text-colour);
 
     text-align: center;
     text-decoration: none;
+}
+
+#show-nav p {
     color: var(--nav-text-colour);
 }
 
@@ -360,7 +364,7 @@ textarea {
 
 .news-article-image {
     width: 50%;
-    margin: 0 auto;
+    margin: 0 25%;
     padding-bottom: .5em;
     transition: .5s ease;
 }
