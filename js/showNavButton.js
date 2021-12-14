@@ -1,3 +1,13 @@
+// Author: Jack Sanders
+
+/* This script is used to toggle whether or not the nav menu is visible.
+ Whenever the menu button gets clicked, the parent function is called, which
+  then decides whether to call the desktop or mobile version of the
+   function. Also, toggleNavFocus is called, which changes whether or not
+    you can select nav items using tab, to prevent them from being selected
+     when invisible.
+ */
+
 function changeNavVisible() {
     // 'Parent' function, used to control which change nav function is called
     if (nav.dataset.expanded === 'false') {
@@ -67,4 +77,4 @@ let showButton = document.getElementById('show-nav');
 let nav = document.getElementsByTagName("nav")[0];
 nav.dataset.expanded = 'false';
 showButton.addEventListener('click', changeNavVisible, false);
-toggleNavFocus();
+toggleNavFocus(); // Turn off tab for nav items

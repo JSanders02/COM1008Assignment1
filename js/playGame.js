@@ -1,3 +1,9 @@
+// Author: Jack Sanders
+
+/* This scrips is the main game script - it controls the flow of the game:
+ when to show buttons, what those buttons should do, what pictures to draw, etc
+ */
+
 /* Use a super class for game object classes, to avoid having to rewrite
  methods that function identically.
  */

@@ -1,3 +1,10 @@
+// Author: Jack Sanders
+
+/* This function is used to make the game responsive, by making the size of
+ the canvas respond to the screen size. Also, it will alter the position and
+  size of objects that have been drawn onto the canvas by the main game script.
+ */
+
 function resetCanvasSize() {
     /* Function to automatically resize the game canvas when the page is
      loaded/reloaded/resized, to take up the maximum space possible - makes
@@ -111,5 +118,8 @@ function resizeAction() {
 let timer = false;
 let originalWindowWidth = window.innerWidth;
 
+/* Add event listeners for load and resize, so that the canvas is refreshed
+ every time the page is loaded, reloaded, or resized.
+ */
 window.addEventListener('load', resetCanvasSize);
 window.addEventListener('resize', resizeAction);

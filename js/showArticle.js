@@ -1,3 +1,15 @@
+// Author: Jack Sanders
+
+/* The purpose of this script is to control whether articles on the news
+ page are showing their preview or not. It does this by first calculating
+  the maximum heights of each article when expanded (heading height + date
+   height + image height + text height) and storing those, before minimising
+    the article size to a value of (max heading height + max date height +
+     max image height + preview height). Then, an event listener is added to
+      each article, that calls toggleArticle for that particular one,
+       setting the height to the maximum and allowing the user to read it.
+ */
+
 function toggleArticle(event) {
     // Select the article that was clicked
     let article = event.currentTarget;
